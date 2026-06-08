@@ -38,6 +38,20 @@ const handleChange = (e) => {
   });
 };
 const handleSubmit = () => {
+    if(editId){
+        axios.put(`http://127.0.0.1:8000/api/expenses/update/${editId}/`,formData)
+        .then(()=>{
+            fetchData();
+            setEditId(null)
+            setFormData({
+                title:"",
+                amount:"",
+                category:"",
+                date:"",
+                description:""
+            })
+        })
+    }else{
   axios
     .post(
       "http://127.0.0.1:8000/api/expenses/",
@@ -57,6 +71,7 @@ const handleSubmit = () => {
     .catch((error) => {
       console.log(error.response?.data);
     });
+    }
 };
 const deleteExpense=(id)=>{
     axios .delete(`http://127.0.0.1:8000/api/expenses/${id}/`)
@@ -67,6 +82,18 @@ const deleteExpense=(id)=>{
         console.log(error)
     })
 }
+const editExpense = (expense) => {
+  setEditId(expense.id);
+
+  setFormData({
+    title: expense.title,
+    amount: expense.amount,
+    category: expense.category,
+    date: expense.date,
+    description: expense.description,
+  });
+};
+console.log(expense)
   return (
      <div className="container mt-4">
     <h1 className="text-center">Expenses</h1>
@@ -78,7 +105,8 @@ const deleteExpense=(id)=>{
       editId={editId}
     />
 <ExpenseList expense={expense}
-deleteExpense={deleteExpense} />
+deleteExpense={deleteExpense}
+editExpense={editExpense}/>
   </div>
   );
 }

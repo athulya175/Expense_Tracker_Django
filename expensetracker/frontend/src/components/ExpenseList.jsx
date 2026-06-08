@@ -1,4 +1,4 @@
-function ExpenseList({ expense,deleteExpense }) {
+function ExpenseList({ expense,deleteExpense ,editExpense}) {
   return (
     <>
       {expense.map((exp) => (
@@ -8,6 +8,7 @@ function ExpenseList({ expense,deleteExpense }) {
             <p>₹{exp.amount}</p>
             <p>{exp.category}</p>
             <button className="btn btn-danger" onClick={()=>deleteExpense(exp.id)}>Delete</button>
+            <button className="btn btn-warning me-2" onClick={()=>editExpense(exp)}>Edit</button>
           </div>
         </div>
       ))}
