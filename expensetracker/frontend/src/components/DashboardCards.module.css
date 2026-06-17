@@ -1,0 +1,168 @@
+
+.cardContainer {
+  display: grid;
+  gap: 20px;
+  margin-top: 30px;
+  padding: 30px 60px;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header h6 {
+  color: #64748b;
+  font-size: 14px;
+  letter-spacing: 1px;
+  font-weight: 600;
+}
+
+.iconBox {
+  width: 55px;
+  height: 55px;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+}
+
+.amount {
+  margin-top: 35px;
+  font-size: 42px;
+  color: #ef4444;
+  font-weight: 700;
+}
+
+.badge {
+  margin-top: 20px;
+  display: inline-block;
+  background: #ffe5e5;
+  color: #ef4444;
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+.food {
+  color:#f59e0b;
+}
+.travel {
+  color: #10b981;
+}
+.exp {
+  color: #ef4444;
+}
+.bills {
+  color: #8b5cf6;
+}
+.enter {
+  color: #3b82f6;
+}
+.other {
+  color: #6b7280;
+}
+@media (max-width: 480px) {
+  .cardContainer {
+    grid-template-columns: 1fr;
+    padding: 12px;
+  }
+}
+
+.foodCard {
+  background: #fff7e8;
+}
+
+.travelCard {
+  background: #eefbf4;
+}
+
+.shoppingCard {
+  background: #fff1f1;
+}
+
+.billsCard {
+  background: #f4f1ff;
+}
+
+.enterCard {
+  background: #eef6ff;
+}
+
+.otherCard {
+  background: #f6f4ef;
+}
+
+.bottomLine {
+  height: 4px;
+  width: 100%;
+  border-radius: 10px;
+  margin-top: 20px;
+}
+
+.foodLine {
+  background: #f4dcb3;
+}
+
+.travelLine {
+  background: #b8f6e1;
+}
+
+.shoppingLine {
+  background: #fdbebe;
+}
+
+.billsLine {
+  background: #ccb9f8;
+}
+
+.enterLine {
+  background: #b5ccf1;
+}
+
+.otherLine {
+  background: #9dadcd;
+}
+
+.card {
+  border-radius: 24px;
+  padding: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  min-height: 230px;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+.sectionTitle {
+  margin: 30px 60px 10px;
+  font-weight: 700;
+  color: #525252;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.cardContainer {
+  display: grid;
+  gap: 20px;
+}
+
+@media (min-width: 1200px) {
+  .cardContainer {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+  .cardContainer {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 767px) {
+  .cardContainer {
+    grid-template-columns: 1fr;
+  }
+}

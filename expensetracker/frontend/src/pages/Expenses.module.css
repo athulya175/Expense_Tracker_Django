@@ -1,0 +1,90 @@
+.statsCard {
+  border: none;
+  border-radius: 16px;
+  padding: 20px;
+  background: white;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.statsCard:hover {
+  transform: translateY(-4px);
+}
+
+.statsTitle {
+  color: #6c757d;
+  font-size: 14px;
+}
+
+.statsValue {
+  font-size: 28px;
+  font-weight: 700;
+  color: #5b4ddb;
+}
+.categoryPill {
+  border: none;
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.categoryPill:hover {
+  transform: translateY(-2px);
+}
+
+.activePill {
+  color: white;
+}
+.submitBtn{
+background: #5b4bc4 !important;
+}
+@media (max-width: 425px) {
+  .statsCard {
+    padding: 16px;
+  }
+
+  .statsValue {
+    font-size: 2rem;
+  }
+}
+
+.welcomeSection {
+ margin-bottom: 30px;
+}
+
+.welcomeSection h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.welcomeSection p {
+  color: #64748b;
+  margin: 0;
+}
+
+@media (max-width: 576px) {
+  .expenseCard {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .amount {
+    font-size: 1.8rem;
+  }
+
+  .actions {
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .viewButton {
+    width: 100%;
+  }
+}

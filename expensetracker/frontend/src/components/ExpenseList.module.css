@@ -1,0 +1,99 @@
+.expenseCard {
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid #d9d6ff;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 20px;
+}
+
+.leftSection {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.iconBox {
+  width: 50px;
+  height: 50px;
+  border-radius: 14px;
+  background: #fff3e6;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.badge {
+  background: #f5e6dc;
+  color: #b45309;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+}
+
+.actionBtn {
+  width: 40px;
+  height: 40px;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+
+  background: white;
+  cursor: pointer;
+}
+.actionBtn:hover {
+  transform: scale(1.05);
+}
+.amount {
+  color: #1e1b4b;
+  font-weight: 600;
+  font-size: 22px;
+}
+
+.sectionTitle {
+  color: #5b4bc4;
+  font-size: 18px;
+  font-weight: 700;
+  margin: 30px 0 20px 0;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+.expenseCard {
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  border: 1px solid #d9d6ff;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+}
+
+.expenseCard:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+.emptyState {
+  text-align: center;
+  padding: 40px;
+  background: white;
+  border-radius: 20px;
+  margin-top: 20px;
+}
+
+.emptyState h4 {
+  color: #5b4bc4;
+}
+
+.emptyState p {
+  color: #6b7280;
+}

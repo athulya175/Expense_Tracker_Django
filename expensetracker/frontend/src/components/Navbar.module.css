@@ -1,0 +1,101 @@
+.navbar {
+  background: #5b4bc4;
+  padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  /* ❌ Removed flex-wrap: wrap */
+}
+
+.brand {
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-right: auto;
+  font-family: "Montserrat", sans-serif;
+  white-space: nowrap;
+}
+
+.navLinks {
+  display: flex;
+  gap: 15px;
+}
+
+.link {
+  color: white;
+  text-decoration: none;
+  padding: 10px 20px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  transition: 0.3s;
+}
+
+.link:hover {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.active {
+  background: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.logoutBtn {
+  background: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.logoutBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.hamburger {
+  display: none;
+}
+
+/* ✅ Mobile: dropdown overlays content, doesn't expand navbar */
+@media (max-width: 767px) {
+  .hamburger {
+    display: block;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 28px;
+    cursor: pointer;
+  }
+
+  .navLinks {
+    display: none;
+  }
+
+  .activeMenu {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 16px;
+
+    /* ✅ Dropdown floats below navbar without pushing content */
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: #5b4bc4;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+  }
+}
+
+@media (min-width: 768px) {
+  .navLinks {
+    justify-content: flex-end;
+  }
+}

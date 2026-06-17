@@ -1,0 +1,257 @@
+.summaryCard {
+  background: linear-gradient(135deg, #4338ca, #6366f1);
+  color: white;
+  padding: 24px;
+  border-radius: 24px;
+  box-shadow: 0 10px 25px rgba(49, 46, 129, 0.2);
+
+  width: 100%;
+
+}
+
+.stats {
+  display: flex;
+  gap: 50px;
+  margin-top: 20px;
+}
+.amount {
+  font-size: 1.2rem;
+}
+
+.heroSection {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  padding: 30px 60px;
+  margin-top: 45px;
+}
+.budgetCard {
+  background: white;
+  border-radius: 20px;
+  padding: 24px;
+  box-shadow: 0 6px 20px rgba(0,0,0,.08);
+}
+
+@media (max-width: 992px) {
+  .heroSection {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+}
+
+@media (max-width: 576px) {
+  .summaryCard,
+  .budgetCard {
+    padding: 20px;
+  }
+.heroSection{
+  padding: 12px;
+}
+
+  .stats {
+    justify-content: space-between;
+    gap: 10px;
+  }
+}
+
+
+.progressWrapper {
+  margin: 20px 0;
+}
+
+.progressTrack {
+  height: 10px;
+  background: #e5e7eb;
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.progressFill {
+  height: 100%;
+  background: linear-gradient(90deg, #4338ca, #6366f1);
+  border-radius: 999px;
+  transition: width 0.5s ease;
+}
+
+.progressInfo {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 8px;
+  font-size: 14px;
+  color: #64748b;
+}
+.goodBadge,
+.warningBadge,
+.dangerBadge {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.goodBadge {
+  background: #dcfce7;
+  color: #15803d;
+}
+
+.warningBadge {
+  background: #fef3c7;
+  color: #b45309;
+}
+
+.dangerBadge {
+  background: #fee2e2;
+  color: #dc2626;
+}
+.divider {
+  border: none;
+  height: 1px;
+  background: rgba(255,255,255,0.2);
+  margin: 20px 0;
+}
+.stats {
+  display: flex;
+ 
+  gap: 50px;
+  margin-top: 30px;
+}
+.dashboardContainer {
+  padding: 24px;
+}
+.transactionItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.leftSection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.transactionIcon {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.transactionTitle {
+  font-weight: 600;
+}
+
+.transactionCategory {
+  color: #64748b;
+  font-size: 14px;
+}
+
+.transactionAmount {
+  font-weight: 700;
+  color: #0f172a;
+}
+.transactionItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #e5e7eb;
+  transition: all 0.25s ease;
+}
+
+.transactionItem:hover {
+  transform: translateX(4px);
+}
+.transactionItem:last-child {
+  border-bottom: none;
+}
+.chartCard {
+  background: white;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 10px 25px rgba(0,0,0,.08);
+  height: 100%;
+}
+.cardHeader{
+  margin-bottom: 20px;
+  
+}
+
+.cardHeader h5 {
+  font-weight: 700;
+
+  color: #525252;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.cardHeader span {
+  color: #64748b;
+  font-size: 14px;
+}
+.emptyState {
+  text-align: center;
+  color: #64748b;
+  margin-top: 50px;
+}
+
+
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+.subText {
+  color: #64748b;
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+.layout{
+  border: 1px solid rgba(0, 0, 0, 0.175);
+  padding: 16px;
+  border-radius: 6px;
+}
+.transactionDate {
+  font-size: 12px;
+  color: #94a3b8;
+  margin-top: 2px;
+}
+
+.amountBadge {
+  background: #eef2ff;
+  color: #4338ca;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 14px;
+}
+.welcomeSection {
+  padding: 30px 60px 0;
+}
+
+.welcomeSection h2 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 4px;
+}
+
+.welcomeSection p {
+  color: #64748b;
+  margin: 0;
+}
+
+@media (max-width: 992px) {
+  .welcomeSection {
+    padding: 20px 16px 0;
+  }
+}
