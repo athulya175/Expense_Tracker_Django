@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import DashboardCards from "../components/DashboardCards";
-import axios from "axios";
+import api from "../api/api";
 import ExpensePieChart from "../components/ExpensePieChart";
 import DashboardStats from "../components/DashboardStats";
 import styles from "./Dashboard.module.css";
@@ -94,12 +94,12 @@ function Dashboard() {
     },
   };
   useEffect(() => {
-    axios
+    api
       .get("http://127.0.0.1:8000/api/expenses/", config)
       .then((response) => {
         setExpense(response.data);
       });
-    axios
+    api
       .get("http://127.0.0.1:8000/api/budget/", config)
       .then((response) => {
         setSavedBudget(response.data.amount);
@@ -170,7 +170,7 @@ function Dashboard() {
   const isExceeded =
     totalExpense > savedBudget;
   const saveBudget = () => {
-    axios
+    api
       .post(
         "http://127.0.0.1:8000/api/budget/",
         {
@@ -227,22 +227,30 @@ function Dashboard() {
                 }}
               />
             </div>
-            {budgetPercentage < 80 && (
+            {savedBudget <= 0 ? (
+
+              <div className={styles.infoBadge}>
+                ℹ No Budget Set
+              </div>
+
+            ) : budgetPercentage < 80 ? (
+
               <div className={styles.goodBadge}>
                 ✓ Well within budget
               </div>
-            )}
 
-            {budgetPercentage >= 80 && budgetPercentage < 100 && (
+            ) : budgetPercentage < 100 ? (
+
               <div className={styles.warningBadge}>
                 ⚠ Budget almost reached
               </div>
-            )}
 
-            {budgetPercentage >= 100 && (
+            ) : (
+
               <div className={styles.dangerBadge}>
                 ✕ Budget exceeded
               </div>
+
             )}
             <div className={styles.progressInfo}>
               <span>{budgetPercentage.toFixed(1)}% used</span>
@@ -312,40 +320,50 @@ function Dashboard() {
               </p>
             </div>
 
-            <div className="card - body">
-              <div className="card shadow-sm">
-                <div className="card-body">
-                  {recentExpenses.map((exp) => (
-                    <div
-                      key={exp.id}
-                      className={styles.transactionItem}
-                    >
-                      <div className={styles.leftSection}>
-                        <div className={styles.transactionIcon}>
-                          {getCategoryIcon(exp.category)}
-                        </div>
+            <div className="card-body">
 
-                        <div>
-                          <div className={styles.transactionTitle}>
-                            {exp.title}
-                          </div>
+              {recentExpenses.length > 0 ? (
 
-                          <div className={styles.transactionCategory}>
-                            {exp.category}
-                          </div>
-                          <div className={styles.transactionDate}>
-                            {new Date(exp.date).toLocaleDateString()}
-                          </div>
-                        </div>
+                recentExpenses.map((exp) => (
+                  <div
+                    key={exp.id}
+                    className={styles.transactionItem}
+                  >
+                    <div className={styles.leftSection}>
+                      <div className={styles.transactionIcon}>
+                        {getCategoryIcon(exp.category)}
                       </div>
 
-                      <div className={styles.amountBadge}>
-                        ₹{exp.amount}
+                      <div>
+                        <div className={styles.transactionTitle}>
+                          {exp.title}
+                        </div>
+
+                        <div className={styles.transactionCategory}>
+                          {exp.category}
+                        </div>
+
+                        <div className={styles.transactionDate}>
+                          {new Date(exp.date).toLocaleDateString()}
+                        </div>
                       </div>
                     </div>
-                  ))}
+
+                    <div className={styles.amountBadge}>
+                      ₹{exp.amount}
+                    </div>
+                  </div>
+                ))
+
+              ) : (
+
+                <div className={styles.emptyState}>
+                  🧾 No transactions yet.<br />
+                  Add your first expense to see your recent activity.
                 </div>
-              </div>
+
+              )}
+
             </div>
           </div>
         </div>

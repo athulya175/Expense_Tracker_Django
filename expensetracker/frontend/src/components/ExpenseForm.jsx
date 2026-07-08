@@ -1,12 +1,12 @@
 import styles from "./ExpenseForm.module.css";
-function ExpenseForm({ formData, handleChange, handleSubmit, editId }) {
+function ExpenseForm({ formData, handleChange, handleSubmit, editId, errors }) {
   return (
     <div className={styles.formCard}>
       <h4 className={styles.sectionTitle}>ADD EXPENSE</h4>
       <div className={styles.formGrid}>
-        
+
         <div>
-          
+
           <label className={styles.label}>Title</label>
           <input
             className="form-control mb-2"
@@ -16,6 +16,11 @@ function ExpenseForm({ formData, handleChange, handleSubmit, editId }) {
             placeholder="Title"
             onChange={handleChange}
           />
+          {errors.title && (
+            <small className="text-danger">
+              {errors.title[0]}
+            </small>
+          )}
         </div>
         <div>
           <label className={styles.label}>Amount</label>
@@ -27,6 +32,11 @@ function ExpenseForm({ formData, handleChange, handleSubmit, editId }) {
             placeholder="Amount"
             onChange={handleChange}
           />
+          {errors.amount && (
+            <small className="text-danger">
+              {errors.amount[0]}
+            </small>
+          )}
         </div>
         <div>
           <h4 className={styles.sectionTitle}>Category</h4>
@@ -44,6 +54,11 @@ function ExpenseForm({ formData, handleChange, handleSubmit, editId }) {
             <option value="Entertainment">Entertainment</option>
             <option value="Others">Others</option>
           </select>
+          {errors.category && (
+            <small className="text-danger">
+              {errors.category[0]}
+            </small>
+          )}
         </div>
         <div>
           <h4 className={styles.sectionTitle}>Date</h4>
@@ -54,6 +69,11 @@ function ExpenseForm({ formData, handleChange, handleSubmit, editId }) {
             value={formData.date}
             onChange={handleChange}
           />
+          {errors.date && (
+            <small className="text-danger">
+              {errors.date[0]}
+            </small>
+          )}
         </div>
       </div>
       <div className={styles.fullWidth}>
@@ -66,6 +86,11 @@ function ExpenseForm({ formData, handleChange, handleSubmit, editId }) {
           placeholder="Description"
           onChange={handleChange}
         />
+        {errors.description && (
+          <small className="text-danger">
+            {errors.description[0]}
+          </small>
+        )}
       </div>
 
       <div className={styles.fullWidth}>

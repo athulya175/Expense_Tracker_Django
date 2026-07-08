@@ -255,3 +255,27 @@
     padding: 20px 16px 0;
   }
 }
+.infoBadge {
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 10px 18px;
+    border-radius: 20px;
+    display: inline-block;
+    font-weight: 600;
+    margin-top: 10px;
+}
+.emptyState {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 180px;
+    text-align: center;
+    color: #64748b;
+    font-size: 16px;
+    line-height: 1.6;
+}
+.card-body{
+      border: 1px solid rgba(0, 0, 0, 0.175);
+    padding: 16px;
+    border-radius: 6px;
+}

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../api/api";
 import ExpenseForm from "../components/ExpenseForm";
 import ExpenseList from "../components/ExpenseList";
 import styles from "./Expenses.module.css";
@@ -41,7 +41,7 @@ function Expenses() {
   useEffect(() => {
     fetchData();
   }, [selectedDate]);
-
+  const [errors, setErrors] = useState({});
   const fetchData = () => {
     let url = "http://127.0.0.1:8000/api/expenses/";
 
@@ -49,7 +49,7 @@ function Expenses() {
       url += `?date=${selectedDate}`;
     }
 
-    axios.get(url, config).then((response) => {
+    api.get(url, config).then((response) => {
       setExpense(response.data);
     });
   };
@@ -61,7 +61,7 @@ function Expenses() {
   };
   const handleSubmit = () => {
     if (editId) {
-      axios
+      api
         .put(`http://127.0.0.1:8000/api/expenses/update/${editId}/`, formData, config)
         .then(() => {
           fetchData();
@@ -75,7 +75,7 @@ function Expenses() {
           });
         });
     } else {
-      axios
+      api
         .post("http://127.0.0.1:8000/api/expenses/", formData, config)
         .then(() => {
           fetchData();
@@ -89,12 +89,14 @@ function Expenses() {
           });
         })
         .catch((error) => {
-          console.log(error.response?.data);
+          if (error.response?.data) {
+            setErrors(error.response.data);
+          }
         });
     }
   };
   const deleteExpense = (id) => {
-    axios
+    api
       .delete(`http://127.0.0.1:8000/api/expenses/${id}/`, config)
       .then(() => {
         fetchData();
@@ -246,6 +248,7 @@ function Expenses() {
                 handleChange={handleChange}
                 handleSubmit={handleSubmit}
                 editId={editId}
+                errors={errors}
               />
             </div>
           )}

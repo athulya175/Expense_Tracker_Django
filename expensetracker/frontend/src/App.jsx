@@ -7,10 +7,11 @@ import Register from "./pages/Register";
 import ProtectedRoute from "./components/ProtectedRoute";
 import NotFound from "./pages/NotFound";
 import Reports from "./pages/Reports";
+import AIInsights from "./pages/AIInsights";
 
 function App() {
   return (
-    <div className="container-fluid" style={{ background: "#F0F4F8", padding: 0 }}>
+    <div className="container-fluid" style={{ background: "#F0F4F8", padding: 0, minHeight: "100vh" }}>
       <BrowserRouter>
         <Navbar />
 
@@ -36,6 +37,7 @@ function App() {
           <Route path="/register" element={<Register />} />
           <Route path="*" element={<NotFound />} />
           <Route path="/reports" element={<Reports />} />
+          <Route path="/ai-insights" element={<AIInsights />} />
         </Routes>
       </BrowserRouter>
     </div>

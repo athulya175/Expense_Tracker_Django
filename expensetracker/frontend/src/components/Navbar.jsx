@@ -81,9 +81,15 @@ function Navbar() {
               >
                 Reports
               </NavLink>
+              <NavLink to="/ai-insights" className={({ isActive }) =>
+                isActive ? `${styles.link} ${styles.active}` : styles.link
+              }>
+                <span>AI Insights</span>
+              </NavLink>
               <button className={styles.logoutBtn} onClick={handleLogout}>
                 Logout
               </button>
+
             </>
           ) : (
             <>

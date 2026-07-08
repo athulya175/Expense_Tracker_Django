@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import api from "../api/api";
 import { useNavigate } from "react-router-dom";
 import styles from "./Login.module.css"
 function Login() {
@@ -16,7 +16,7 @@ function Login() {
   };
 
   const handleSubmit = () => {
-    axios
+    api
       .post(
         "http://127.0.0.1:8000/api/token/",
         formData

@@ -63,7 +63,7 @@
 }
 
 /* ✅ Mobile: dropdown overlays content, doesn't expand navbar */
-@media (max-width: 767px) {
+@media (max-width: 876px) {
   .hamburger {
     display: block;
     background: none;

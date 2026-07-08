@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import styles from "./Reports.module.css"
 import { TbReportAnalytics } from "react-icons/tb";
 import ReportsStats from "../components/ReportStats";
+import api from "../api/api";
 
 function Reports() {
     const currentMonth = new Date().toLocaleString("default", {
@@ -16,7 +17,47 @@ function Reports() {
     const [selectedMonth, setSelectedMonth] = useState("");
     const [selectedYear, setSelectedYear] = useState("");
     const [selectedCategory, setSelectedCategory] = useState("");
-    const [searchTerm, setSearchTerm] = useState("");
+    // const [searchTerm, setSearchTerm] = useState("");
+    const [reportData, setReportData] = useState(null);
+    useEffect(() => {
+        fetchReports(
+            selectedMonth,
+            selectedCategory,
+            // searchTerm
+        );
+    }, [
+        selectedMonth,
+        selectedCategory,
+        // searchTerm,
+    ]);
+    const fetchReports = async (month = "",
+        category = "",
+        search = "") => {
+        try {
+
+            const token = localStorage.getItem("token");
+
+            const response = await api.get(
+                "http://127.0.0.1:8000/api/reports/",
+                {
+                    params: {
+                        month,
+                        category,
+                        search,
+                    },
+
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                }
+            );
+
+            setReportData(response.data);
+
+        } catch (error) {
+            console.log(error);
+        }
+    };
     return (
         <div className={styles.container}>
             {/* Header */}
@@ -71,7 +112,7 @@ function Reports() {
                     <option>Entertainment</option>
                     <option>Others</option>
                 </select>
-                <input
+                {/* <input
                     type="text"
                     className={styles.searchInput}
                     placeholder="🔍 Search expenses..."
@@ -79,9 +120,14 @@ function Reports() {
                     onChange={(e) =>
                         setSearchTerm(e.target.value)
                     }
-                />
+                /> */}
             </div>
-            <ReportsStats />
+            <ReportsStats
+                totalSpent={reportData?.summary.total || 0}
+                transactions={reportData?.summary.transactions || 0}
+                highest={reportData?.summary.highest || 0}
+                average={reportData?.summary.average || 0}
+            />
         </div>
     )
 }
