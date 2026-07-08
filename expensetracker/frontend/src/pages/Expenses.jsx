@@ -5,6 +5,8 @@ import ExpenseList from "../components/ExpenseList";
 import styles from "./Expenses.module.css";
 const hour = new Date().getHours();
 let greeting = "";
+import { useTheme } from "../context/ThemeContext";
+
 
 if (hour < 12) {
   greeting = "Good Morning ☀️";
@@ -37,6 +39,7 @@ function Expenses() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [sortBy, setSortBy] = useState("newest");
+  const { theme } = useTheme();
 
   useEffect(() => {
     fetchData();
@@ -94,6 +97,7 @@ function Expenses() {
           }
         });
     }
+    setErrors("")
   };
   const deleteExpense = (id) => {
     api
@@ -231,8 +235,8 @@ function Expenses() {
           </div>
         </div>
       </div>
-      <div className="card shadow-sm border-0 mb-4">
-        <div className="card-body">
+      <div className={`${styles.cardWrapper} shadow-sm mb-4`}>
+        <div className={styles.cardBody}>
 
           <button
             className={`btn btn-primary ${styles.submitBtn}`}
@@ -274,19 +278,29 @@ function Expenses() {
         ].map((category) => (
           <button
             key={category}
-            className={`${styles.categoryPill} ${selectedCategory === category
-              ? styles.activePill
-              : ""
+            className={`${styles.categoryPill} ${selectedCategory === category ? styles.activePill : ""
               }`}
             style={{
               backgroundColor:
                 selectedCategory === category
                   ? categoryColors[category]
-                  : "#f3f4f6",
+                  : theme === "dark"
+                    ? "#1e293b"   // Dark mode background
+                    : "#f3f4f6",  // Light mode background
+
               color:
                 selectedCategory === category
                   ? "#fff"
-                  : "#333",
+                  : theme === "dark"
+                    ? "#f8fafc"
+                    : "#333",
+
+              border:
+                selectedCategory === category
+                  ? "none"
+                  : theme === "dark"
+                    ? "1px solid #334155"
+                    : "1px solid #e5e7eb",
             }}
             onClick={() => setSelectedCategory(category)}
           >
@@ -320,7 +334,7 @@ function Expenses() {
               <div className="modal-content">
 
                 <div className="modal-header">
-                  <h5 className="modal-title">
+                  <h5 className="modal-title" style={{ color: "#5b4ddb" }}>
                     Expense Details
                   </h5>
 
@@ -330,35 +344,37 @@ function Expenses() {
                   ></button>
                 </div>
 
-                <div className="modal-body">
-                  <p>
-                    <strong>Title:</strong>{" "}
-                    {selectedExpense.title}
-                  </p>
+                <div className={styles.modalContent}>
 
-                  <p>
-                    <strong>Amount:</strong> ₹
-                    {selectedExpense.amount}
-                  </p>
+                  <div className={styles.detailRow}>
+                    <span className={styles.label} style={{ color: "#5b4ddb" }}>Title</span>
+                    <span className={styles.value}>{selectedExpense.title}</span>
+                  </div>
 
-                  <p>
-                    <strong>Category:</strong>{" "}
-                    {selectedExpense.category}
-                  </p>
+                  <div className={styles.detailRow}>
+                    <span className={styles.label} style={{ color: "#5b4ddb" }}>Amount</span>
+                    <span className={styles.value}>₹{selectedExpense.amount}</span>
+                  </div>
 
-                  <p>
-                    <strong>Date:</strong>{" "}
-                    {selectedExpense.date}
-                  </p>
+                  <div className={styles.detailRow}>
+                    <span className={styles.label} style={{ color: "#5b4ddb" }}>Category</span>
+                    <span className={styles.value}>{selectedExpense.category}</span>
+                  </div>
 
-                  <p>
-                    <strong>Description:</strong>
-                    <br />
-                    {selectedExpense.description ||
-                      "No description"}
-                  </p>
+                  <div className={styles.detailRow}>
+                    <span className={styles.label} style={{ color: "#5b4ddb" }}>Date</span>
+                    <span className={styles.value}>{selectedExpense.date}</span>
+                  </div>
+
+                  <div className={styles.descriptionBox}>
+                    <span className={styles.label} style={{ color: "#5b4ddb" }}>Description</span>
+
+                    <p className={styles.description}>
+                      {selectedExpense.description || "No description"}
+                    </p>
+                  </div>
+
                 </div>
-
               </div>
             </div>
           </div>

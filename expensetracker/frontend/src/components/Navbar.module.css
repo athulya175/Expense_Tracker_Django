@@ -1,5 +1,5 @@
 .navbar {
-  background: #5b4bc4;
+  background: var(--navbar-bg);
   padding: 16px 24px;
   display: flex;
   justify-content: space-between;
@@ -7,12 +7,11 @@
   position: sticky;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  /* ❌ Removed flex-wrap: wrap */
+  box-shadow: 0 2px 10px rgba(0,0,0,.1);
 }
 
 .brand {
-  color: white;
+  color: var(--navbar-text);
   text-decoration: none;
   font-size: 1.5rem;
   font-weight: 600;
@@ -21,54 +20,73 @@
   white-space: nowrap;
 }
 
+.brand:hover {
+  color: var(--navbar-text);
+}
+
 .navLinks {
   display: flex;
   gap: 15px;
 }
 
-.link {
-  color: white;
+.link,
+.activeLink {
+  color: var(--navbar-text);
   text-decoration: none;
   padding: 10px 20px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 12px;
-  transition: 0.3s;
+  transition: .3s;
+  border: 1px solid rgba(255,255,255,.15);
+}
+
+.link {
+  background: transparent;
 }
 
 .link:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--navbar-hover);
 }
 
-.active {
-  background: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.3);
+.activeLink {
+  background: var(--navbar-hover);
+  border-color: rgba(255,255,255,.3);
+}
+
+.link:focus,
+.link:focus-visible,
+.activeLink:focus,
+.activeLink:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 
 .logoutBtn {
   background: transparent;
   border: none;
-  color: white;
+  color: var(--navbar-text);
   cursor: pointer;
   padding: 8px 12px;
   border-radius: 8px;
   font-size: 1rem;
+  transition: .3s;
 }
 
 .logoutBtn:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--navbar-hover);
 }
 
 .hamburger {
   display: none;
+  color: var(--navbar-text);
 }
 
-/* ✅ Mobile: dropdown overlays content, doesn't expand navbar */
-@media (max-width: 876px) {
+@media (max-width:876px) {
+
   .hamburger {
     display: block;
     background: none;
     border: none;
-    color: white;
+    color: var(--navbar-text);
     font-size: 28px;
     cursor: pointer;
   }
@@ -83,18 +101,19 @@
     gap: 10px;
     padding: 16px;
 
-    /* ✅ Dropdown floats below navbar without pushing content */
     position: absolute;
     top: 60px;
     left: 0;
     right: 0;
-    background: #5b4bc4;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+
+    background: var(--navbar-bg);
+
+    box-shadow: 0 4px 12px rgba(0,0,0,.2);
     z-index: 999;
   }
 }
 
-@media (min-width: 768px) {
+@media (min-width:768px) {
   .navLinks {
     justify-content: flex-end;
   }

@@ -1,25 +1,24 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import styles from "./Navbar.module.css";
-import { NavLink } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 import { useRef, useState, useEffect } from "react";
+import ThemeToggle from "./ThemeToggle";
 
 function Navbar() {
   const navigate = useNavigate();
 
   const token = localStorage.getItem("token");
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/login");
   };
+
   const menuRef = useRef(null);
   const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
     const handleClickOutside = (event) => {
-      if (
-        menuRef.current &&
-        !menuRef.current.contains(event.target)
-      ) {
+      if (menuRef.current && !menuRef.current.contains(event.target)) {
         setMenuOpen(false);
       }
     };
@@ -27,12 +26,10 @@ function Navbar() {
     document.addEventListener("mousedown", handleClickOutside);
 
     return () => {
-      document.removeEventListener(
-        "mousedown",
-        handleClickOutside
-      );
+      document.removeEventListener("mousedown", handleClickOutside);
     };
   }, []);
+
   return (
     <nav className={styles.navbar}>
       <Link className={styles.brand} to="/">
@@ -47,16 +44,17 @@ function Navbar() {
           {menuOpen ? "✕" : "☰"}
         </button>
 
-        {/* ✅ Moved inside menuRef — clicks here won't trigger handleClickOutside */}
         <div
-          className={`${styles.navLinks} ${menuOpen ? styles.activeMenu : ""}`}
+          className={`${styles.navLinks} ${menuOpen ? styles.activeMenu : ""
+            }`}
         >
           {token ? (
             <>
               <NavLink
                 to="/"
+                end
                 className={({ isActive }) =>
-                  isActive ? `${styles.link} ${styles.active}` : styles.link
+                  isActive ? styles.activeLink : styles.link
                 }
                 onClick={() => setMenuOpen(false)}
               >
@@ -66,39 +64,49 @@ function Navbar() {
               <NavLink
                 to="/expenses"
                 className={({ isActive }) =>
-                  isActive ? `${styles.link} ${styles.active}` : styles.link
+                  isActive ? styles.activeLink : styles.link
                 }
                 onClick={() => setMenuOpen(false)}
               >
                 Expenses
               </NavLink>
+
               <NavLink
                 to="/reports"
                 className={({ isActive }) =>
-                  isActive ? `${styles.link} ${styles.active}` : styles.link
+                  isActive ? styles.activeLink : styles.link
                 }
                 onClick={() => setMenuOpen(false)}
               >
                 Reports
               </NavLink>
-              <NavLink to="/ai-insights" className={({ isActive }) =>
-                isActive ? `${styles.link} ${styles.active}` : styles.link
-              }>
-                <span>AI Insights</span>
+
+              <NavLink
+                to="/ai-insights"
+                className={({ isActive }) =>
+                  isActive ? styles.activeLink : styles.link
+                }
+                onClick={() => setMenuOpen(false)}
+              >
+                AI Insights
               </NavLink>
-              <button className={styles.logoutBtn} onClick={handleLogout}>
+
+              <ThemeToggle />
+
+              <button
+                className={styles.logoutBtn}
+                onClick={handleLogout}
+              >
                 Logout
               </button>
-
             </>
           ) : (
             <>
               <NavLink
                 to="/login"
                 className={({ isActive }) =>
-                  isActive ? `${styles.link} ${styles.active}` : styles.link
+                  isActive ? styles.activeLink : styles.link
                 }
-                onClick={() => setMenuOpen(false)}
               >
                 Login
               </NavLink>
@@ -106,9 +114,8 @@ function Navbar() {
               <NavLink
                 to="/register"
                 className={({ isActive }) =>
-                  isActive ? `${styles.link} ${styles.active}` : styles.link
+                  isActive ? styles.activeLink : styles.link
                 }
-                onClick={() => setMenuOpen(false)}
               >
                 Register
               </NavLink>

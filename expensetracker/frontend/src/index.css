@@ -1,30 +1,89 @@
-body{
+:root {
 
-    background:var(--background);
+  /* Main Theme */
+  --background: #F0F4F8;
+  --card: #FFFFFF;
+  --text: #1E293B;
+  --primary: #5B4DDB;
+  --secondary: #64748B;
+  --border: #E5E7EB;
 
-    color:var(--text);
-
-    transition:.3s;
-
+  /* Category Cards */
+  --food-card: #fff7e8;
+  --travel-card: #eefbf4;
+  --shopping-card: #fff1f1;
+  --bills-card: #f4f1ff;
+  --enter-card: #eef6ff;
+  --other-card: #f6f4ef;
 }
-:root{
 
-    --background:#F0F4F8;
-    --card:#ffffff;
-    --text:#1E293B;
-    --primary:#5B4DDB;
-    --secondary:#64748B;
-    --border:#E5E7EB;
+[data-theme="dark"] {
 
+  /* Main Theme */
+  --background: #0F172A;
+  --card: #1E293B;
+  --text: #F8FAFC;
+  --primary: #6D5DF6;
+  --secondary: #CBD5E1;
+  --border: #334155;
+
+  /* Category Cards */
+  --food-card: #2b2418;
+  --travel-card: #1b2b25;
+  --shopping-card: #2c2020;
+  --bills-card: #241f31;
+  --enter-card: #1d2735;
+  --other-card: #2b2b2b;
 }
 
-[data-theme="dark"]{
+body {
+  background: var(--background);
+  color: var(--text);
+  transition: background .3s ease, color .3s ease;
+}
+[data-theme="dark"] .btn-primary {
+    --bs-btn-bg: #1e293b;
+    --bs-btn-border-color: #334155;
+    --bs-btn-hover-bg: #334155;
+    --bs-btn-hover-border-color: #475569;
+    --bs-btn-active-bg: #475569;
+    --bs-btn-active-border-color: #64748b;
+    --bs-btn-color: #f8fafc;
+}
+:root {
+  --navbar-bg: #5b4ddb;
+  --navbar-text: #ffffff;
+  --navbar-hover: rgba(255,255,255,0.15);
+}
 
-    --background:#0F172A;
-    --card:#1E293B;
-    --text:#F8FAFC;
-    --primary:#6D5DF6;
-    --secondary:#CBD5E1;
-    --border:#334155;
+[data-theme="dark"] {
+  --navbar-bg: #111827;
+  --navbar-text: #f8fafc;
+  --navbar-hover: #1f2937;
+}
+/* Light Theme */
+.modal-content {
+  background: #ffffff;
+  color: var(--text);
+}
 
+/* Dark Theme */
+[data-theme="dark"] .modal-content {
+  background: #1e293b;   /* same as your cards */
+  color: var(--text);
+  border: 1px solid var(--border);
+}
+
+/* Header & Footer */
+
+[data-theme="dark"] .modal-header,
+[data-theme="dark"] .modal-footer {
+  background: #1e293b;
+  border-color: var(--border);
+}
+
+/* Close Button */
+
+[data-theme="dark"] .btn-close {
+  filter: invert(1);
 }

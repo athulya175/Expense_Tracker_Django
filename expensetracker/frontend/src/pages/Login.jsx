@@ -13,6 +13,7 @@ function Login() {
       ...formData,
       [e.target.name]: e.target.value,
     });
+    setError("");
   };
 
   const handleSubmit = () => {
@@ -35,9 +36,14 @@ function Login() {
         navigate("/");
       })
       .catch((error) => {
-        console.log(error);
+        if (error.response?.status === 401) {
+          setError("Invalid username or password.");
+        } else {
+          setError("Something went wrong. Please try again.");
+        }
       });
   };
+  const [error, setError] = useState("");
 
   return (
     <div className={styles.loginContainer}>
@@ -63,7 +69,11 @@ function Login() {
             placeholder="Password"
             onChange={handleChange}
           />
-
+          {error && (
+            <div className={styles.errorMessage}>
+              {error}
+            </div>
+          )}
           <button
             className={`btn btn-primary ${styles.loginBtn}`}
             onClick={handleSubmit}

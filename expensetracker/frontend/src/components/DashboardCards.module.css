@@ -1,10 +1,10 @@
-
 .cardContainer {
   display: grid;
   gap: 20px;
   margin-top: 30px;
   padding: 30px 60px;
 }
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -12,7 +12,7 @@
 }
 
 .header h6 {
-  color: #64748b;
+  color: var(--secondary);
   font-size: 14px;
   letter-spacing: 1px;
   font-weight: 600;
@@ -38,30 +38,39 @@
 .badge {
   margin-top: 20px;
   display: inline-block;
-  background: #ffe5e5;
+ background: var(--card);
   color: #ef4444;
   padding: 8px 14px;
   border-radius: 20px;
   font-weight: 600;
 }
+
+/* Category Colors */
+
 .food {
-  color:#f59e0b;
+  color: #f59e0b;
 }
+
 .travel {
   color: #10b981;
 }
+
 .exp {
   color: #ef4444;
 }
+
 .bills {
   color: #8b5cf6;
 }
+
 .enter {
   color: #3b82f6;
 }
+
 .other {
   color: #6b7280;
 }
+
 @media (max-width: 480px) {
   .cardContainer {
     grid-template-columns: 1fr;
@@ -69,29 +78,33 @@
   }
 }
 
+/* Category Cards */
+
 .foodCard {
-  background: #fff7e8;
+  background: var(--food-card);
 }
 
 .travelCard {
-  background: #eefbf4;
+  background: var(--travel-card);
 }
 
 .shoppingCard {
-  background: #fff1f1;
+  background: var(--shopping-card);
 }
 
 .billsCard {
-  background: #f4f1ff;
+  background: var(--bills-card);
 }
 
 .enterCard {
-  background: #eef6ff;
+  background: var(--enter-card);
 }
 
 .otherCard {
-  background: #f6f4ef;
+  background: var(--other-card);
 }
+
+/* Bottom Lines */
 
 .bottomLine {
   height: 4px;
@@ -124,26 +137,32 @@
   background: #9dadcd;
 }
 
+/* Main Card */
+
 .card {
+  background: var(--card);
+  color: var(--text);
   border-radius: 24px;
   padding: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
   min-height: 230px;
 }
 
 .card:hover {
   transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12);
 }
 
 .sectionTitle {
   margin: 30px 60px 10px;
   font-weight: 700;
-  color: #525252;
+  color: var(--text);
+  opacity: 0.8;
   letter-spacing: 1px;
   text-transform: uppercase;
 }
+
 .cardContainer {
   display: grid;
   gap: 20px;

@@ -11,7 +11,9 @@ import AIInsights from "./pages/AIInsights";
 
 function App() {
   return (
-    <div className="container-fluid" style={{ background: "#F0F4F8", padding: 0, minHeight: "100vh" }}>
+    <div className="container-fluid" style={{
+      background: "var(--background)", padding: 0, minHeight: "100vh"
+    }}>
       <BrowserRouter>
         <Navbar />
 
@@ -40,7 +42,7 @@ function App() {
           <Route path="/ai-insights" element={<AIInsights />} />
         </Routes>
       </BrowserRouter>
-    </div>
+    </div >
   );
 }
 

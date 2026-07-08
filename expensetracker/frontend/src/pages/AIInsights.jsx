@@ -221,7 +221,8 @@ function AIInsights() {
                 </button>
                 {
                     answer && (
-                        <div className={styles.answerCard}>
+
+                        <div className={styles.aiLoading}>
                             <h4>🤖 AI Response</h4>
 
                             <p>{answer}</p>

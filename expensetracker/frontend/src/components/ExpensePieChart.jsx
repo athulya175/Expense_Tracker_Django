@@ -6,6 +6,7 @@ import {
 } from "chart.js";
 
 import { Doughnut } from "react-chartjs-2";
+import { useTheme } from "../context/ThemeContext";
 
 ChartJS.register(
   ArcElement,
@@ -21,36 +22,39 @@ function ExpensePieChart({
   entertainmentExpense,
   othersExpense,
 }) {
+  const { theme } = useTheme();
+  const isDark = theme === "dark";
+
   const categories = [
     {
       label: "Food",
       value: foodExpense,
-      color: "#22c55e",
+      color: "#F59E0B",
     },
     {
       label: "Travel",
       value: travelExpense,
-      color: "#3b82f6",
+      color: "#10B981",
     },
     {
       label: "Shopping",
       value: shoppingExpense,
-      color: "#06b6d4",
+      color: "#3B82F6",
     },
     {
       label: "Bills",
       value: billsExpense,
-      color: "#8b5cf6",
+      color: "#8B5CF6",
     },
     {
       label: "Entertainment",
       value: entertainmentExpense,
-      color: "#ef4444",
+      color: "#EC4899",
     },
     {
       label: "Others",
       value: othersExpense,
-      color: "#6b7280",
+      color: "#6B7280",
     },
   ];
 
@@ -69,52 +73,16 @@ function ExpensePieChart({
           (category) => category.value
         ),
 
-        backgroundColor:
-          filteredCategories.map(
-            (category) => category.color
-          ),
+        backgroundColor: filteredCategories.map(
+          (category) => category.color
+        ),
 
         borderWidth: 0,
+        hoverOffset: 10,
       },
     ],
   };
 
-  const options = {
-    responsive: true,
-    maintainAspectRatio: false,
-
-    plugins: {
-      legend: {
-        position: "bottom",
-        labels: {
-          boxWidth: 18,
-          padding: 20,
-        },
-      },
-
-      tooltip: {
-        callbacks: {
-          label: function (context) {
-            const total = context.dataset.data.reduce(
-              (a, b) => a + b,
-              0
-            );
-
-            const value = context.raw;
-
-            const percentage = (
-              (value / total) *
-              100
-            ).toFixed(1);
-
-            return `₹${value} (${percentage}%)`;
-          },
-        },
-      },
-    },
-
-    cutout: "65%",
-  };
   const total =
     foodExpense +
     travelExpense +
@@ -122,6 +90,7 @@ function ExpensePieChart({
     billsExpense +
     entertainmentExpense +
     othersExpense;
+
   const centerTextPlugin = {
     id: "centerText",
 
@@ -139,17 +108,84 @@ function ExpensePieChart({
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
 
-      ctx.font = "bold 28px sans-serif";
-      ctx.fillStyle = "#0f172a";
-      ctx.fillText(`₹${total}`, x, y - 10);
+      ctx.font = "bold 30px sans-serif";
+      ctx.fillStyle = "#475569";
+      ctx.fillText(`₹${total}`, x, y - 12);
 
-      ctx.font = "14px sans-serif";
-      ctx.fillStyle = "#64748b";
-      ctx.fillText("Total Spent", x, y + 20);
+      ctx.font = "15px sans-serif";
+      ctx.fillStyle = "#94A3B8";
+      ctx.fillText("Total Spent", x, y + 18);
 
       ctx.restore();
     },
   };
+
+  const options = {
+    responsive: true,
+    maintainAspectRatio: false,
+
+    cutout: "68%",
+
+    plugins: {
+      legend: {
+        position: "bottom",
+
+        labels: {
+          color: isDark ? "#E2E8F0" : "#475569",
+
+          font: {
+            size: 13,
+            weight: "600",
+          },
+
+          padding: 20,
+          boxWidth: 14,
+          boxHeight: 14,
+          usePointStyle: true,
+          pointStyle: "circle",
+        },
+      },
+
+      tooltip: {
+        backgroundColor: isDark
+          ? "#1E293B"
+          : "#FFFFFF",
+
+        titleColor: isDark
+          ? "#FFFFFF"
+          : "#0F172A",
+
+        bodyColor: isDark
+          ? "#FFFFFF"
+          : "#0F172A",
+
+        borderColor: isDark
+          ? "#475569"
+          : "#E2E8F0",
+
+        borderWidth: 1,
+
+        callbacks: {
+          label: function (context) {
+            const total = context.dataset.data.reduce(
+              (a, b) => a + b,
+              0
+            );
+
+            const value = context.raw;
+
+            const percentage = (
+              (value / total) *
+              100
+            ).toFixed(1);
+
+            return `${context.label}: ₹${value} (${percentage}%)`;
+          },
+        },
+      },
+    },
+  };
+
   if (total === 0) {
     return (
       <div
@@ -158,13 +194,18 @@ function ExpensePieChart({
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          color: "#64748b",
+          color: isDark
+            ? "#94A3B8"
+            : "#64748B",
+          fontSize: "16px",
+          fontWeight: "500",
         }}
       >
         No expense data available
       </div>
     );
   }
+
   return (
     <div
       style={{
