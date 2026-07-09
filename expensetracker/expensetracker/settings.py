@@ -26,7 +26,7 @@ SECRET_KEY = os.getenv(
     "django-insecure-ezpj)vox@vtxhnq)c80skwm5l$m^4p0e+cznxgi-mq%7jnc*uw"
 )
 
-DEBUG = os.getenv("DEBUG", "True") == "True"
+DEBUG = Falsegit add .
 
 ALLOWED_HOSTS = ["*"]
 
