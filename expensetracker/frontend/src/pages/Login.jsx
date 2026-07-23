@@ -80,6 +80,7 @@ function Login() {
           >
             Login
           </button>
+          <p>Dont have a account? <a href="/register">Register here</a></p>
         </div>
       </div>
     </div>
